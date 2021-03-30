@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="customer" class="com.assignments.one.Customer">
+<!--        setter injection-->
+<!--        <property name="customerId" value="1"/>-->
+<!--        <property name="customerName" value="amit"/>-->
+<!--        <property name="customerContact" value="9182122222"/>-->
+<!--        <property name="customerAddress" ref="address"/>-->
+
+<!--        constructor injection-->
+
+        <constructor-arg value="1"/>
+        <constructor-arg value="amit"/>
+        <constructor-arg value="9120202020"/>
+        <constructor-arg ref="address"/>
+
+    </bean>
+
+    <bean id="address" class="com.assignments.one.Address">
+
+<!--        setter injection-->
+<!--        <property name="street" value="xyz street"/>-->
+<!--        <property name="city" value="anantapur"/>-->
+<!--        <property name="state" value="Andhra"/>-->
+<!--        <property name="zip" value="515425"/>-->
+<!--        <property name="country" value="India"/>-->
+
+
+<!--        constructor injection -->
+        <constructor-arg value="xyz street"/>
+        <constructor-arg value="anantapur"/>
+        <constructor-arg value="Andhra"/>
+        <constructor-arg value="515425"/>
+        <constructor-arg value="India"/>
+
+
+
+    </bean>
+
+
+
+</beans>

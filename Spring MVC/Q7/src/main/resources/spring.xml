@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="student1" class="com.assignments.seven.Student">
+        <property name="name" value="vamsi"/>
+        <property name="email" value="vamsi@xyz.com"/>
+        <property name="marksInMath" value="70"/>
+        <property name="marksInPhysics" value="60"/>
+        <property name="marksInChemistry" value="40"/>
+    </bean>
+    <bean id="student2" class="com.assignments.seven.Student">
+        <property name="name" value="krishna"/>
+        <property name="email" value="krishna@xyz.com"/>
+        <property name="marksInMath" value="20"/>
+        <property name="marksInPhysics" value="20"/>
+        <property name="marksInChemistry" value="90"/>
+    </bean>
+
+    <bean id="marksheet1" class="com.assignments.seven.MarkSheet">
+        <property name="name" value="student1.name" />
+        <property name="resultMessage" value="#{student1.marksInMath >=30 and student1.marksInPhysics >=30 and student1.marksInChemistry>=30 ? passedMessage : failedMessage}"/>
+    </bean>
+
+    <bean id="marksheet2" class="com.assignments.seven.MarkSheet">
+        <property name="name" value="student2.name" />
+        <property name="resultMessage" value="#{student2.marksInMath >=30 and student2.marksInPhysics >=30 and student2.marksInChemistry>=30 ? passedMessage : failedMessage}"/>
+    </bean>
+
+    <bean id="listOfStudents" class="java.util.ArrayList">
+        <constructor-arg>
+           <list>
+               <ref bean="student1"/>
+               <ref bean="student2"/>
+           </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="section" class="com.assignments.seven.Section">
+        <property name="studentFailedInMathList" value="#{listOfStudents.?[marksInMath lt 30 ]}"/>
+        <property name="studentNames" value="#{listOfStudents.![name]}"/>
+    </bean>
+
+
+
+    <bean id="passedMessage" class="java.lang.String">
+        <constructor-arg>
+            <value>Congrats you have passed !!!</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="failedMessage" class="java.lang.String">
+        <constructor-arg>
+            <value>You have failed</value>
+        </constructor-arg>
+    </bean>
+</beans>
